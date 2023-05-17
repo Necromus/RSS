@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp2.AddOrderPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="AddOrderPage" Height="170" Width="350" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Товар" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <ComboBox x:Name="ComboBoxProduct" Width="200" Height="30" Grid.Row="0" Grid.Column="1" Margin="5"></ComboBox>
+        <TextBlock Text="Колличество" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0"></TextBlock>
+        <TextBox x:Name="productCountTextBox" Margin="5" Padding = "5" Width="200" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Button Click="AddOrderButton" Grid.Row="2" Grid.ColumnSpan="2" Margin="50,10,50,10">Оформить заказ</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,151 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <Label Content="Принят" MouseLeftButtonDown="TabItemAccepted_Clicked"></Label>
+            </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="AcceptedStatusOrderDataGrid" CellEditEnding="AcceptedStatusOrderDataGridCellEditEnding" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="5" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Id товара" Binding="{Binding Path=productId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=productCount}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=orderStatus}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="от" Binding="{Binding Path=orderDataFrom, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="до" Binding="{Binding Path=orderDataTo, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Склад" Click="ChangeStatusToStorage"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+
+                </DataGrid>
+
+                <Button Click="AddOrderButton" Margin="5" Grid.Row="1" Grid.Column="0">Добавить заказ</Button>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <Label Content="Склад" MouseLeftButtonDown="TabItemStorage_Clicked"></Label>
+            </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="StorageStatusOrderDataGrid" ItemsSource="{Binding}" CellEditEnding="StorageStatusOrderDataGridCellEditEnding" AutoGenerateColumns="False" Margin="5" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Id товара" Binding="{Binding Path=productId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=productCount}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=orderStatus}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="от" Binding="{Binding Path=orderDataFrom, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="до" Binding="{Binding Path=orderDataTo, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Продан" Click="ChangeStatusToSold"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+
+                </DataGrid>
+            </Grid>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <Label Content="Продан" MouseLeftButtonDown="TabItemSold_Clicked"></Label>
+            </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="SoldStatusOrderDataGrid" ItemsSource="{Binding}" CellEditEnding="SoldStatusOrderDataGridCellEditEnding" AutoGenerateColumns="False" Margin="5" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Id товара" Binding="{Binding Path=productId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=productCount}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=orderStatus}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="от" Binding="{Binding Path=orderDataFrom, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="до" Binding="{Binding Path=orderDataTo, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <Label Content="Отчет"></Label>
+            </TabItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="OrderDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="5" Grid.Row="1" Grid.ColumnSpan="4">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Id товара" Binding="{Binding Path=productId}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=productCount}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=orderStatus}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="от" Binding="{Binding Path=orderDataFrom, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="до" Binding="{Binding Path=orderDataTo, StringFormat=dd-MM-yyyy}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <ComboBox x:Name="ComboBoxOrder" SelectedIndex="0" Margin="5" Grid.Row="0" Grid.Column="0"></ComboBox>
+                
+                <TextBlock Margin="5,5,120,5" Grid.Row="0" Grid.Column="1" TextAlignment="Center" Padding="10">От</TextBlock>
+                <TextBox x:Name="TextBoxDateFrom" Margin="35,5,5,5" Grid.Row="0" Grid.Column="1" TextAlignment="Center" Padding="10"></TextBox>
+                <TextBlock Margin="5,5,120,5" Grid.Row="0" Grid.Column="2" TextAlignment="Center" Padding="10">До</TextBlock>
+                <TextBox x:Name="TextBoxDateTo" Margin="35,5,5,5" Grid.Row="0" Grid.Column="2" TextAlignment="Center" Padding="10"></TextBox>
+
+                <Button Click="ButtonClickUpdate" Margin="5" Grid.Row="0" Grid.Column="3">Обновить</Button>
+
+                <TextBlock x:Name="SumProductTextBlock" Grid.Row="3" Margin="5" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
