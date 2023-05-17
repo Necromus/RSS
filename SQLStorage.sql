@@ -16,7 +16,7 @@ create table [Status](
 Stat nvarchar(20) primary key
 )
 
-insert into [Status] values ('Принят')
-insert into [Status] values ('На склад')
-insert into [Status] values ('Продан')
-insert into [Status] values ('Все')
+insert into [Status] values ('РџСЂРёРЅСЏС‚')
+insert into [Status] values ('РќР° СЃРєР»Р°Рґ')
+insert into [Status] values ('РџСЂРѕРґР°РЅ')
+insert into [Status] values ('Р’СЃРµ')
